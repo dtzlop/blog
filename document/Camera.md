@@ -1,83 +1,52 @@
- Render Type
+Camera Settings Overview
+Render Type:
 
-Base：用于主摄像机，渲染场景的主要内容。
+Base: This is a standard camera that renders the scene normally. You can also set it to "Overlay" if you want this camera to render on top of another camera.
+Projection:
 
-Overlay：用于叠加其他摄像机的渲染结果，通常用于 UI 或特定效果。
+Type: Perspective - Creates a realistic 3D view where objects farther away appear smaller.
+Field of View Axis: Vertical - Controls the vertical angle of the camera's view.
+Field of View (FOV): 60 - Sets how wide the camera can see. Higher values capture more but can distort the image.
+Clipping Planes:
+Near: 0.3 - The closest distance the camera will render objects. Anything closer won't be visible.
+Far: 1000 - The farthest distance the camera can see.
+Physical Camera:
 
-3. Projection
+Disabled. This would simulate real-world camera properties like lens and aperture, if enabled.
+Rendering Options
+Renderer:
 
-Perspective：透视投影，适合 3D 游戏，模拟人眼观察效果，远处的物体看起来较小。
+Default Renderer (URP-HighFidelity-Renderer): Uses the Universal Render Pipeline for better visuals and performance.
+Post Processing:
 
-Orthographic：正交投影，适合 2D 游戏，所有物体大小不受距离影响。
+Disabled: Post-processing effects (like bloom, depth of field) are turned off.
+Anti-aliasing:
 
-Field of View Axis
+No Anti-aliasing: Edges might appear jagged because there’s no smoothing applied.
+Stop NaNs:
 
-Vertical / Horizontal：控制视野角度的轴向，决定视角是垂直还是水平。
+Disabled: Not preventing NaNs (Not a Number) from affecting the render output.
+Dithering:
 
-Field of View (FOV)
+Disabled: Not applying dithering, which reduces color banding.
+Render Shadows:
 
-仅在透视投影模式下有效，用于控制摄像机的视角大小，单位为度。较大的视角可以看到更多场景，但会带来更强烈的透视效果。
+Enabled: Shadows will be rendered, giving the scene more depth.
+Priority:
 
-Size
+-1: Determines the rendering order when multiple cameras are active. Lower values render first.
+Opaque Texture:
 
-在正交投影模式下有效，用于控制摄像机的视口大小。数值越大，看到的场景越多。
+Using Pipeline Settings: Follow the settings defined in the Render Pipeline Asset for opaque textures.
+Depth Texture:
 
-Clipping Planes
+Using Pipeline Settings: Depth textures (used for effects like fog) follow the render pipeline’s configurations.
+Culling Mask:
 
-Near：摄像机能够渲染的最近距离。通常设置为一个小的正值，以避免渲染摄像机内部的物体。
+Everything: The camera will render all layers. You can restrict it to certain layers if needed.
+Occlusion Culling:
 
-Far：摄像机能够渲染的最远距离。应根据场景调整以提高渲染性能。
-
-Physical Camera
-
-启用物理摄像机模式，允许使用物理参数（如焦距、快门速度等）来模拟真实相机的效果。
-
-4. Rendering
-
-Renderer
-
-选择摄像机使用的渲染器。默认使用项目设置中的渲染管线。
-
-Post Processing
-
-启用后处理效果，以增强图像的视觉效果，例如颜色校正、模糊等。
-
-Anti-Aliasing
-
-选择抗锯齿模式，以减少图像中边缘的锯齿现象。选项包括无抗锯齿、2x、4x 等。
-
-Stop NaNs
-
-启用此选项可以在渲染过程中停止 NaN（非数字）值的传播，避免出现视觉瑕疵。
-
-Dithering
-
-启用抖动以减少颜色带来的视觉失真。
-
-Render Shadows
-
-控制摄像机是否渲染阴影。
-
-Priority
-
-设置摄像机的优先级，用于控制多个摄像机的渲染顺序。较高的值意味着更高的渲染优先级。
-
-Opaque Texture
-
-控制是否捕获不透明纹理，用于某些后处理效果。
-
-Depth Texture
-
-控制是否捕获深度纹理，以用于后期效果（例如深度模糊）。
-
-Culling Mask
-
-用于选择哪些层（Layer）会被摄像机渲染。可以使用该选项选择性地隐藏或显示某些对象。
-
-Occlusion Culling
-
-启用此选项可以让摄像机使用遮挡剔除技术，不渲染被其他物体遮挡的对象，以提高渲染性能。
-
-5. Stack
-
-在叠加模式下，可以在 Stack 中添加其他摄像机。用于将多个摄像机的渲染结果组合在一起，通常用于叠加 UI、特效等。
+Enabled: The camera will not render objects that are blocked by other objects, optimizing performance.
+Stack
+Cameras:
+List is Empty: No additional cameras are layered on top of this one.
